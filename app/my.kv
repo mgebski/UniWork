@@ -1,0 +1,556 @@
+#:import Window kivy.core.window.Window
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:set color_shadow [0, 0, 0, .2980392156862745]
+
+WindowManager:
+	transition:NoTransition()
+    MainWindow:
+    SecondWindow:
+	ThirdWindow:
+	FourthWindow:
+	FifthWindow:
+	SixthWindow:
+	SeventhWindow:
+	EigthWindow:
+	NinthWindow:
+
+<MainWindow>:
+    name: "main"
+
+    email:email
+	password:password
+
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'mylogo.jpg'
+
+	GridLayout:	
+		cols:1
+		pos_hint: {'x': 0.35 ,"y":-0.35}
+		
+		
+		GridLayout:
+			cols:1
+			size_hint:(None,None)
+			spacing:10
+			TextInput:
+				id:email
+				hint_text: "Email"
+				multiline:False
+				size_hint: (None, None)
+				height: 50
+				width: 500
+				background_color: (0,0,0,0.8)
+				on_text: self.foreground_color = (255,255,255,1)
+			TextInput:
+				id:password
+				password: True
+				hint_text: "Password"
+				multiline:False
+				size_hint: (None, None)
+				height: 50
+				width: 500
+				background_color: (0,0,0,0.8)
+				on_text: self.foreground_color = (255,255,255,1)
+			BoxLayout:
+				size_hint: (None,None)
+				height: 50
+				width: 500
+				spacing:5
+				SmoothButton:
+					text:"Log In"
+					on_release:
+						root.btn()
+						app.root.current = "second"
+						root.manager.transition.direction = "down"
+					back_color:(0.157,0.455,0.752,0.8)
+				SmoothButton:
+					text:"Register"
+					on_release:
+						root.btn()
+						app.root.current = "ninth"
+						root.manager.transition.direction = "down"
+					back_color:(0.157,0.455,0.752,0.8)
+		
+				
+
+			
+<SmoothButton@Button>:
+	background_color:(0,0,0,0)
+	background_normal:''
+	back_color:(1,0,1,1)
+	border_radius: [5]
+	canvas.before:
+		Color:
+			rgba: self.back_color
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: self.border_radius
+        
+
+   
+
+<SecondWindow>:
+    name: "second"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'bridge.jpeg'
+	FloatLayout:
+		PageLayout:
+			
+			GridLayout:
+				cols:1
+				
+				GridLayout:
+					cols:1
+					size_hint:(1,None)
+					BoxLayout:
+						size_hint:(None,None)
+						canvas: 
+							Color: 
+								rgba: [0, 0, 0,0.5] 
+							Rectangle: 
+								pos: self.pos 
+								size: self.size 
+						width:75
+						height:75
+						ImageButton:
+							pos_hint: {'x': 0.1 ,"y":0.02}
+							source:"h.png"
+							size_hint:(None,None)
+							width:75
+							height:75
+							on_release:
+								app.root.current = "third"
+			
+				FloatLayout:					
+					GridLayout:
+						rows:2
+						canvas:
+							Color: 
+								rgba: [0, 0, 0,0.5] 
+							Rectangle: 
+								pos: self.pos 
+								size: self.size
+						pos_hint: {"x":0.2, "top":1} 
+						size_hint: (None,None)
+						height: 1000
+						width: 800
+						
+						Label:
+							text:"Activity"
+							size_hint:(0.5,None)
+						 
+						Label:
+							size_hint:(None,None)
+							text:"Content"
+						
+
+			GridLayout:
+				
+				cols:2
+				canvas: 
+					Color: 
+						rgba: [0, 0, 0,0.5] 
+					Rectangle: 
+						pos: self.pos
+						size: self.size
+						
+				
+				GridLayout:
+					size_hint:(None,0.5)
+					cols:1
+					
+					Label:
+						size_hint:(None, 0.2)
+						text:"Notifications"
+						font_size:50
+						canvas.before:
+							PushMatrix
+							Rotate:
+								angle: 90
+								origin: self.center
+						canvas.after:
+							PopMatrix
+
+				GridLayout:
+					cols:1
+					canvas:
+						Rectangle:
+							pos: self.pos
+							size: self.size
+							source: 'tree.jpeg'
+					
+					
+					Button:
+						text:"Refresh"
+						size_hint:(None,None)
+						on_release:
+							root.btn()
+					BoxLayout:
+						height: 300
+						width: 300
+						canvas: 
+							Color: 
+								rgba: [0, 0, 0,0.5] 
+							Rectangle: 
+								pos: self.pos 
+								size: self.size 
+						Label:
+							text:"He"
+		
+		
+<ThirdWindow>:
+	name: "third"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'm.jpeg'
+	BoxLayout:
+		BoxLayout:
+			pos_hint: {'x': 0 ,"y":0.92}
+			BoxLayout:
+				size_hint:(None,None)
+				canvas: 
+					Color: 
+						rgba: [0, 0, 0,0.5] 
+					Rectangle: 
+						pos: self.pos 
+						size: self.size 
+				width:75
+				height:75
+				ImageButton:
+					pos_hint: {'x': 0.1 ,"y":0.02}
+					source:"s.png"
+					size_hint:(None,None)
+					width:75
+					height:75
+					on_release:
+						app.root.current = "second"
+						
+			BoxLayout:
+				pos_hint: {'x': 1.5 ,"y":-0.5}
+				Label:
+						
+					size_hint:(None,None)
+					text:"Hello Dan"
+					font_size:"40"
+		GridLayout:
+			pos_hint: {'x':-2 ,"y":0.05}
+			height:1000
+			width:1000
+			size_hint:(None,None)
+			rows:2
+			GridLayout:
+				rows:3
+				cols:2
+				pos_hint: {'x': 0.5 ,"y":-1.1}
+				orientation: "vertical"
+				spacing:(5,5)
+				BoxLayout:
+					orientation:"vertical"
+					size_hint:(None,None)
+					width:450
+					height:450
+					canvas: 
+						Color: 
+							rgba: [0, 0, 0,0.5] 
+						Rectangle: 
+							pos: self.pos 
+							size: self.size 
+					ImageButton:
+						pos_hint: {'x': 0 ,"y":1}
+						source:"Search.png"
+						size_hint:(None,None)
+						width:450
+						height:450
+						on_release:
+							app.root.current = "fifth"
+							root.manager.transition.direction = "left"
+					
+				BoxLayout:
+					orientation:"vertical"
+					size_hint:(None,None)
+					width:450
+					height:450
+					canvas: 
+						Color: 
+							rgba: [0, 0, 0,0.5] 
+						Rectangle: 
+							pos: self.pos 
+							size: self.size 
+					ImageButton:
+						pos_hint: {'x': 0 ,"y":1}
+						source:"Setting.png"
+						size_hint:(None,None)
+						width:450
+						height:450
+						on_release:
+							app.root.current = "sixth"
+					
+				BoxLayout:
+					orientation:"vertical"
+					size_hint:(None,None)
+					width:450
+					height:450
+					canvas: 
+						Color: 
+							rgba: [0, 0, 0,0.5] 
+						Rectangle: 
+							pos: self.pos 
+							size: self.size 
+					ImageButton:
+						pos_hint: {'x': 0 ,"y":1}
+						source:"Follow.png"
+						size_hint:(None,None)
+						width:450
+						height:450
+						on_release:
+							app.root.current = "seventh"
+							
+					
+				BoxLayout:
+					orientation:"vertical"
+					size_hint:(None,None)
+					width:450
+					height:450
+					canvas: 
+						Color: 
+							rgba: [0, 0, 0,0.5] 
+						Rectangle: 
+							pos: self.pos 
+							size: self.size 
+					ImageButton:
+						pos_hint: {'x': 0 ,"y":1}
+						source:"Profile_icon.png"
+						size_hint:(None,None)
+						width:450
+						height:450
+						on_release:
+							app.root.current = "fourth"
+							root.manager.transition.direction = "left"
+					
+						
+			Button:
+				text:"Log Out"
+				width:908
+				
+				size_hint:(None,0.1)
+				background_color:(0,0,0,0.5)
+				on_release:
+					app.root.current = "main"
+					root.manager.transition.direction = "right"
+	
+		
+<FourthWindow>:
+	name: "fourth"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'h.jpeg'
+	GridLayout:
+		rows:1
+		Button:
+			size_hint:(None,None)
+			text:"Back"
+			on_release:
+				app.root.current = "third"
+				root.manager.transition.direction = "right"
+		Label:
+			text:"Profile"
+		
+<FifthWindow>:
+	name:"fifth"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'j.jpeg'
+	searchbar:searchbar
+	BoxLayout:
+		spacing:400
+		pos_hint: {'x':0.01 ,"y":0.81}
+		size_hint:(None,None)
+		BoxLayout:
+			size_hint:(None,None)
+			pos_hint: {'x':5 ,"y":1}
+			Button:
+				
+				background_color:(0,0,0,0.5)
+				text:"Back"
+				on_release:
+					app.root.current = "third"
+					root.manager.transition.direction = "right"
+		BoxLayout:
+			orientation:"vertical"
+			pos_hint: {'x':0 ,"y":0}
+			size_hint:(None,None)
+			BoxLayout:
+				TextInput:
+					id:searchbar
+					hint_text: "Search for Media"
+					size_hint: (None, None)
+					height: 30
+					width: 300
+				SmoothButton:
+					text:"Search"
+					size_hint:(None,None)
+					width:100
+					height:30
+					on_release:
+						root.btn1()
+					back_color:(0.157,0.455,0.752,0.7)
+			
+			GridLayout:
+				rows:100
+				id:grid
+<SixthWindow>:
+	name:"sixth"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'l.jpeg'
+	GridLayout:
+		cols:1
+		BoxLayout:
+			pos_hint: {'x': 0 ,"top":1}
+			height:300
+			Button:
+				size_hint:(None,None)
+				text:"Back"
+				on_release:
+					app.root.current = "third"
+					root.manager.transition.direction = "right"
+		
+		FloatLayout:
+			GridLayout:
+				pos_hint: {'x': 0 ,"top":1}
+				cols:1
+				Label:
+					text:"Settings"
+<SeventhWindow>:
+	name:"seventh"	
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'p.jpeg'
+	GridLayout:
+		cols:1
+		Button:
+			size_hint:(None,None)
+			text:"Back"
+			on_release:
+				app.root.current = "third"
+				root.manager.transition.direction = "right"
+		Label:
+			text:"Followers"
+<EigthWindow>:
+	name:"eigth"
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'l.jpeg'
+	GridLayout:
+		cols:1
+		Button:
+			size_hint:(None,None)
+			text:"Back"
+			on_release:
+				app.root.current = "third"
+				root.manager.transition.direction = "right"
+		Label:
+			text:"Content"
+<NinthWindow>:
+	name:"ninth"
+	
+	email:email
+	username:username
+	password:password
+	con_password:con_password
+	dob:dob
+	
+	canvas:
+		Rectangle:
+			pos: self.pos
+			size: self.size
+			source: 'r.jpeg'
+	
+	GridLayout: 	
+		cols:1
+		pos_hint: {'x': 0.35 ,"y":-0.35}
+		
+		
+		GridLayout:
+			cols:1
+			size_hint:(None,None)
+			
+			TextInput:
+				id:email
+				hint_text: "Email"
+				multiline:False
+				size_hint: (None, None)
+				height: 50
+				width: 500
+				background_color: (0,0,0,0.5)
+				on_text: self.foreground_color = (255,255,255,1)
+			TextInput:
+				id:username
+				hint_text: "Username"
+				multiline:False
+				size_hint: (None, None)
+				height: 50
+				width: 500
+				background_color: (0,0,0,0.5)
+				on_text: self.foreground_color = (255,255,255,1)
+			TextInput:
+				id:password
+				password: True
+				hint_text: "Password"
+				multiline:False
+				size_hint: (None, None)
+				height: 50
+				width: 500
+				background_color: (0,0,0,0.5)
+				on_text: self.foreground_color = (255,255,255,1)
+			TextInput:
+				id:con_password
+				password: True
+				hint_text: "Confirm Password"
+				multiline:False
+				size_hint: (None, None)
+				height: 50
+				width: 500
+				background_color: (0,0,0,0.5)
+				on_text: self.foreground_color = (255,255,255,1)
+			TextInput:
+				id:dob
+				hint_text: "DOB"
+				multiline:False
+				size_hint: (None, None)
+				height: 50
+				width: 500
+				background_color: (0,0,0,0.5)
+				on_text: self.foreground_color = (255,255,255,1)
+			
+			BoxLayout:
+				size_hint: (None,None)
+				height: 50
+				width: 500
+				spacing: 10
+				SmoothButton:
+					text:"Complete"
+					on_release:
+						root.btn()
+						app.root.current = "main"
+						root.manager.transition.direction = "down"
+					back_color:(0.157,0.455,0.752,0.5)
