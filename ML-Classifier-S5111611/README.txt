@@ -1,0 +1,1 @@
+MAIN.py is data cleaning and actually using the classifier and CART.py is the classifier it self
